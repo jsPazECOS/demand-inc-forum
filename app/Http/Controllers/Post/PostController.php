@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Post;
 
-use App\Models\PostResponse;
+use App\Http\Controllers\Controller;
+use App\Models\Post\Post;
 use Illuminate\Http\Request;
 
-class PostResponseController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class PostResponseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PostResponse  $postResponse
+     * @param  \App\Models\Post\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(PostResponse $postResponse)
+    public function show(Post $post)
     {
         //
     }
@@ -52,10 +53,10 @@ class PostResponseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PostResponse  $postResponse
+     * @param  \App\Models\Post\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(PostResponse $postResponse)
+    public function edit(Post $post)
     {
         //
     }
@@ -64,10 +65,10 @@ class PostResponseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PostResponse  $postResponse
+     * @param  \App\Models\Post\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PostResponse $postResponse)
+    public function update(Request $request, Post $post)
     {
         //
     }
@@ -75,10 +76,10 @@ class PostResponseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PostResponse  $postResponse
+     * @param  \App\Models\Post\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PostResponse $postResponse)
+    public function destroy(Post $post)
     {
         //
     }

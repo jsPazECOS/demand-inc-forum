@@ -14,7 +14,8 @@ return new class extends Migration {
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+
+            $table->string('title', 255);
             $table->text('problem');
             $table->string('image')->nullable();
 
@@ -22,7 +23,8 @@ return new class extends Migration {
 
             $table->timestamps();
             $table->softDeletes();
-            $table->index(['title', 'deleted_at']);
+
+            $table->index(['title', 'user_id', 'deleted_at']);
         });
     }
 

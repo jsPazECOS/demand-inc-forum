@@ -2,14 +2,17 @@
 
 namespace Database\Factories;
 
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User\User>
  */
 class UserFactory extends Factory
 {
+    protected $model = User::class;
+
     /**
      * Define the model's default state.
      *
@@ -18,6 +21,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'username' => fake()->unique()->randomElement([fake()->countryCode . fake()->colorName . fake()->numberBetween(0, 1000)]),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
