@@ -11,6 +11,13 @@ class PostResponse extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'response',
+        'image',
+        'post_id',
+        'user_id',
+    ];
+
     public function post()
     {
         return $this->belongsTo(Post::class);
