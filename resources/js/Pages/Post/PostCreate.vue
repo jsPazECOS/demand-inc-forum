@@ -19,13 +19,13 @@ const form = useForm({
     problem: '',
     image: null
 });
-const showCreatePostModal = ref(false);
+let showCreatePostModal = ref(false);
 
 const submit = () => {
     form.post(route('posts.store'), {
         onFinish: () => {
             form.reset();
-            this.showCreatePostModal = false
+            showCreatePostModal = false
         }
 
     });

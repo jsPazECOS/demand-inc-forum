@@ -10,19 +10,23 @@ defineProps(['post']);
 <template>
 
     <div class="mx-auto mb-6">
-        <div class="bg-white p-6 rounded-lg shadow-lg max-h-96">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-h-96 w-full">
             <div class="flex justify-between">
                 <!--<img :src="post.image" class="w-full h-64 object-cover rounded-lg" />-->
                 <p class="text-gray-600 mt-2 align-top text-right">{{ post.user.username }}</p>
-                <p class="text-gray-600 mt-2 inline-block align-bottom text-xs">{{ dayjs(post.created_at).fromNow()}}</p>
+                <p class="text-gray-600 mt-2 inline-block align-bottom text-xs">
+                    {{ dayjs(post.created_at).fromNow() }}</p>
             </div>
             <div class="flex justify-between">
-
                 <h3 class="text-lg font-medium mt-6">{{ post.title }}</h3>
-
             </div>
             <p class="text-gray-600 mt-2 text-xs">Responses: {{ post.responses_count }}</p>
-            <PrimaryButton class="mt-4">Post</PrimaryButton>
+            <Link
+                :href="route('posts.show', post.id)"
+                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+            >Already registered? {{route('posts.show', post.id)}}
+            </Link>
+            <PrimaryButton class="mt-4" @click="route('posts.show', post.id)">Post I</PrimaryButton>
         </div>
     </div>
 </template>

@@ -2,7 +2,16 @@
 import PostItem from "@/Pages/Post/PostItem.vue";
 import PostCreate from "@/Pages/Post/PostCreate.vue";
 
-defineProps({posts: Object});
+defineProps({posts: Object, canLogin: Boolean});
+
+const show = () => {
+    form.post(route('posts.store'), {
+        onFinish: () => {
+            form.reset();
+        }
+
+    });
+};
 
 </script>
 
@@ -17,7 +26,7 @@ defineProps({posts: Object});
                 </button>
             </div>
             <div class="mb-4"><p class="text-center text-white underline text-2xl">Posts List</p></div>
-            <div>
+            <div v-if="!canLogin">
                 <PostCreate/>
             </div>
         </div>

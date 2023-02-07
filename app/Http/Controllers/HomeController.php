@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $this->postRepository->pushCriteria(new WithRelationshipsCriteria(['user:id,username']));
-        $this->postRepository->pushCriteria(new OrderByCriteria('title'));
+        $this->postRepository->pushCriteria(new OrderByCriteria('title', 'asc'));
 
         if ($request->has('filters'))
             $this->postRepository->pushCriteria(new FiltersCriteria($request->get('filters')));
