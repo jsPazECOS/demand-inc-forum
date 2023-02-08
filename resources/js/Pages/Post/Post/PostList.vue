@@ -9,10 +9,12 @@ defineProps({posts: Object});
 
 let posts = ref([]);
 let currentPage = ref(1);
+let searchText = null;
 
 let getPostResponses = () => {
     let url = 'posts?page=' + currentPage;
-
+    if (searchText !== null)
+        url += "&filters=title|like|" + searchText;
     axios.create({
         baseURL: window.location.origin
     }).get(url)
@@ -40,6 +42,10 @@ const postCreated = () => {
     getPostResponses();
 }
 
+const searchByTitle = () => {
+    currentPage = 1;
+    getPostResponses();
+}
 </script>
 
 <template>
@@ -47,8 +53,9 @@ const postCreated = () => {
         <div class="mb-2 flex justify-between">
             <div class="">
                 <input type="text" class="border border-gray-400 p-2 rounded-lg"
-                       placeholder="Search by title"/>
-                <button class="ml-2 px-4 py-2 bg-gray-800 text-white rounded-lg">
+                       placeholder="Search by title" v-model="searchText"/>
+                <button class="ml-2 px-4 py-2 bg-gray-800 text-white rounded-lg"
+                        @click="searchByTitle">
                     Search
                 </button>
             </div>

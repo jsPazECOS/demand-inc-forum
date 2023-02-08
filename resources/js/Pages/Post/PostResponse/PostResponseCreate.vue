@@ -43,7 +43,7 @@ const closeModal = () => {
             <form class="relative px-6 lg:px-8"
                   @submit.prevent="submit(postId)">
                 <div class="mb-4 flex">
-                    <textarea placeholder="Problem"
+                    <textarea placeholder="Response"
                               class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-10/12"
                               v-model="form.response"
                     ></textarea>

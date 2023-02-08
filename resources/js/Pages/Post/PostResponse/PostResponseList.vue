@@ -57,8 +57,8 @@ const responseCreated = () => {
         </div>
         <ul class="list-disc">
             <li v-for="response in postResponses.data" :key="response.id">
-                <p class="text-gray-600 mt-2">{{ response.response }}</p>
-                <p class="text-gray-600 mt-2">By {{ response.user.username }} - {{
+                <p class="text-gray-600 mt-2 ">{{ response.response }}</p>
+                <p class="text-gray-600 mt-2">By <a class="font-bold">{{ response.user.username }}</a> - {{
                         dayjs(response.created_at).fromNow()
                     }}</p>
             </li>

@@ -32,6 +32,6 @@ const previousPage = (currentPage) => {
                 :disabled="currentPage === pagination.last_page">
             Next
         </button>
-        <p class="text-orange-400 align-bottom p-3">{{currentPage}} of {{pagination.last_page}}</p>
+        <p class="text-orange-400 align-bottom p-3 font-bold">Page {{currentPage}} of {{pagination.last_page}} - Total: {{pagination.total}}</p>
     </div>
 </template>

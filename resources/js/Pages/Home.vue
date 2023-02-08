@@ -23,15 +23,9 @@ defineProps({
             <Link :href="route('login')" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in
             </Link>
         </div>
-
-        <div class="max-w-full mx-auto sm:px-6 lg:px-8">
-            <PostList
-                :posts="posts"
-            />
-        </div>
     </div>
 
-    <AuthenticatedLayout v-if="$page.props.auth.user">
+    <AuthenticatedLayout>
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <PostList
                 :posts="posts"
