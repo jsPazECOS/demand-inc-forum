@@ -22,8 +22,8 @@ class PostResponseFactory extends Factory
     public function definition()
     {
         return [
-            'response' => fake()->realText(1000),
-            'image' => fake()->image
+            'response' => fake()->realText(500),
+            'image' => fake()->imageUrl(300, 300)
         ];
     }
 

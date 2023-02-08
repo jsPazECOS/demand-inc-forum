@@ -22,8 +22,8 @@ class PostFactory extends Factory
     {
         return [
             'title' => fake()->text(255),
-            'problem' => fake()->realText(1000),
-            'image' => fake()->image
+            'problem' => fake()->realText(500),
+            'image' => fake()->imageUrl(300, 300)
         ];
     }
 

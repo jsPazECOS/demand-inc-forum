@@ -20,21 +20,18 @@ class PostsSeeder extends Seeder
     {
         $this->command->warn('Running PostsSeeder');
         $users = User::all(['id']);
-        $bar = $this->command->getOutput()->createProgressBar(100);
+        $n = 1000;
+        $bar = $this->command->getOutput()->createProgressBar($n);
         $bar->start();
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < $n; $i++) {
+            $specificUsers = $users->random(20);
             Post::factory()
-                ->count(100)
-                ->state(new Sequence(
-                    fn($sequence) => ['user_id' => $users->random()->id],
-                ))->create()->each(function ($post) use ($users) {
-                    PostResponse::factory()->count(5)
-                        ->state(new Sequence(
-                            fn($sequence) => ['user_id' => $users->random()->id],
-                        ))->create([
-                            'post_id' => $post->id
-                        ]);
-                });
+                ->has(PostResponse::factory()
+                    ->count(5)
+                    ->state(new Sequence(
+                        fn($sequence) => ['user_id' => $specificUsers->random()->id],
+                    )), 'responses')
+                ->create(['user_id' => $specificUsers->random()->id]);
             $bar->advance();
         }
         $bar->finish();

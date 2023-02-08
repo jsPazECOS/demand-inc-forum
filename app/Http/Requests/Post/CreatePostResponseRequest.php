@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests\Post;
 
-use App\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class CreatePostResponseRequest extends BaseRequest
+class CreatePostResponseRequest extends FormRequest
 {
     public function validationData()
     {
-        $this->addParametersToRequest(['post_id' => $this->route('postId')]);
-        return $this->all();
+        return array_merge($this->all(), [
+            'post_id' => $this->route('postId')
+        ]);
     }
 
     /**

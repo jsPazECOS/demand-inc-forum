@@ -16,8 +16,6 @@
         "pestphp/pest": "^1.16",
         "pestphp/pest-plugin-laravel": "^1.1",
         "tightenco/ziggy": "^1.0",
-        "infyomlabs/laravel-generator": "^5.0",
-        "infyomlabs/adminlte-templates": "^5.0",
         "prettus/l5-repository": "^2.6"
     },
     "require-dev": {

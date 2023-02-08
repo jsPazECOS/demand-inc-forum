@@ -18,7 +18,7 @@ class Post extends Model
         'image',
         'user_id',
     ];
-    protected $dates = ['created_at'];
+
     public function responses()
     {
         return $this->hasMany(PostResponse::class);
