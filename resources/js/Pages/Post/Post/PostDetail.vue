@@ -34,11 +34,17 @@ const props = defineProps({
                     </Link>
                 </div>
                 <!--<img :src="post.image" class="w-full h-64 object-cover rounded-lg" />-->
-
-                <h3 class="text-lg font-medium mt-6 font-extrabold">{{ post.title }}</h3>
-                <h3 class="text-lg font-medium mt-6">{{ post.problem }}</h3>
-                <p class="text-gray-600 mt-2">{{ dayjs(post.created_at).fromNow() }}</p>
-                <p class="text-gray-600 mt-2">By {{ post.user.username }}</p>
+                <div class="flex justify-between">
+                    <div>
+                        <h3 class="text-lg font-medium mt-6 font-extrabold">{{ post.title }}</h3>
+                        <h3 class="text-lg font-medium mt-6">{{ post.problem }}</h3>
+                        <p class="text-gray-600 mt-2">{{ dayjs(post.created_at).fromNow() }}</p>
+                        <p class="text-gray-600 mt-2">By {{ post.user.username }}</p>
+                    </div>
+                    <div class="w-1/3">
+                        <img :src="post.image" class="">
+                    </div>
+                </div>
                 <PostResponseList :post-id="post.id"></PostResponseList>
 
             </div>

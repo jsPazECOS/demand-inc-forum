@@ -52,17 +52,23 @@ const responseCreated = () => {
             <div v-if="$page.props.auth.user">
                 <PostResponseCreate :post-id="postId" @responseCreated="responseCreated"/>
             </div>
-
-
         </div>
-        <ul class="list-disc">
-            <li v-for="response in postResponses.data" :key="response.id">
-                <p class="text-gray-600 mt-2 ">{{ response.response }}</p>
-                <p class="text-gray-600 mt-2">By <a class="font-bold">{{ response.user.username }}</a> - {{
-                        dayjs(response.created_at).fromNow()
-                    }}</p>
-            </li>
-        </ul>
+
+            <div class="flex justify-center m-x-8 bg-white p-6 rounded-lg shadow-lg max-h-96 w-full gap-2 ">
+                <div v-for="response in postResponses.data" :key="response.id" class="p-x-4 border-2 border-gray-300  min-w-[30%]">
+                    <div class="flex justify-center m-x-8">
+                        <div class="w-2/3">
+                            <p class="text-gray-600 m-4 ">{{ response.response }}</p>
+                            <p class="text-gray-600 mt-2">By <a class="font-bold">{{ response.user.username }}</a> - {{
+                                    dayjs(response.created_at).fromNow()
+                                }}</p>
+                        </div>
+                        <div class="w-1/4">
+                            <img :src="response.image" class="">
+                        </div>
+                    </div>
+                </div>
+            </div>
         <Pagination v-if="postResponses" :pagination="postResponses" :currentPage="currentPage"
                     @pageChanged="pageChanged">
         </Pagination>
