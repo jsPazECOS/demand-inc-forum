@@ -21,6 +21,21 @@ class PostController extends Controller
     {
     }
 
+    public function index(Request $request)
+    {
+        $this->postRepository->pushCriteria(new WithRelationshipsCriteria(['user:id,username']));
+        $this->postRepository->pushCriteria(new OrderByCriteria('title', 'asc'));
+
+        if ($request->has('filters'))
+            $this->postRepository->pushCriteria(new FiltersCriteria($request->get('filters')));
+
+        $this->postRepository->withCount(['responses']);
+
+        return $request->has('unpaginated') ?
+            $this->postRepository->all() :
+            $this->postRepository->paginate(10);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,12 +59,11 @@ class PostController extends Controller
      */
     public function show(Request $request, $postId)
     {
-        $post = $this->postRepository->find($postId);
-        $post->load('responses.user');
 
-        return Inertia::render('Post/PostDetail', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
+        $post = $this->postRepository->find($postId);
+        $post->load('user', 'responses.user');
+
+        return Inertia::render('Post/Post/PostDetail', [
             'post' => $post
         ]);
     }

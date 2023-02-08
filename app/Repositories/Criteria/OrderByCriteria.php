@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sebastián
- * Date: 24/03/20
- * Time: 11:18 AM
- */
-
 namespace App\Repositories\Criteria;
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Models\Post;
 
+use App\Models\User\User;
 use Database\Factories\PostResponseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,11 @@ class PostResponse extends Model
     public function post()
     {
         return $this->belongsTo(Post::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     protected static function newFactory()
