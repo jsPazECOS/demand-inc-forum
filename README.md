@@ -31,9 +31,13 @@ The requirements for this application are as follows:
 
 ## How to Run
 1. Clone the repository to your local machine.
-2. Run `composer install` to install the required dependencies.
+2. Change to application directory
 3. Set up your database configuration in the `.env` file.
-4. Run `php artisan migrate --seed` to run the database migrations.
-5. Run `npm run build` to build and version the assets.
-5. Run `php artisan serve` to start the local development server.
-6. Visit `http://localhost:8000` in your browser to view the application.
+4. Run `docker-compose build` to build application services.
+5. Run `docker-compose start demand-forum-app` to start application services.
+6. Run `docker exec -it demand-inc-app-demand-forum-app-1 bash` to get into application container
+7. Run `php artisan migrate --seed` to run the database migrations.
+8. Visit `http://localhost:8000` in your browser to view the application.
+9. Log in with these credential 
+   - Email: test@laravel.com
+   - Password: password

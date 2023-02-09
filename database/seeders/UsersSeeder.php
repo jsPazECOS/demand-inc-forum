@@ -16,6 +16,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $this->command->warn('Running UsersSeeder');
+        User::factory()->create(['email' => 'test@laravel.com']);
         User::factory(1000)->create();
         $this->command->warn('Users created');
     }

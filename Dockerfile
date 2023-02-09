@@ -48,11 +48,27 @@ RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.2
 RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 
+
+# Copy code to /var/www
+COPY --chown=www:www-data . /var/www/html
+
+# add root to www group
+RUN chmod -R 775 /var/www/html/storage
+
 COPY ./docker-compose/start-container /usr/local/bin/start-container
 COPY ./docker-compose/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./docker-compose/php/php.ini /etc/php/8.2/cli/conf.d/99-sail.ini
-RUN chmod +x /usr/local/bin/start-container
 
+
+# PHP Error Log Files
+RUN mkdir /var/log/php
+RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
+
+
+RUN composer install --optimize-autoloader --no-dev
+RUN npm install && npm run build
+RUN chmod -R 775 storage/ &&  chmod -R 775 bootstrap/cache
+RUN chown -R $WWWGROUP:www-data storage/
 EXPOSE 8000
 
 ENTRYPOINT ["start-container"]
