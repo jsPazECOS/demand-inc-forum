@@ -34,10 +34,23 @@ The requirements for this application are as follows:
 2. Change to application directory
 3. Set up your database configuration in the `.env` file.
 4. Run `docker-compose build` to build application services.
-5. Run `docker-compose start demand-forum-app` to start application services.
-6. Run `docker exec -it demand-inc-app-demand-forum-app-1 bash` to get into application container
+5. Run `docker-compose up -d` to start application services.
+6. Run `docker exec -it demand-forum bash` to get into application container
 7. Run `php artisan migrate --seed` to run the database migrations.
 8. Visit `http://localhost:8000` in your browser to view the application.
 9. Log in with these credential 
    - Email: test@laravel.com
    - Password: password
+## Troubleshooting
+
+### Troubleshooting: "/usr/bin/env: 'bash\r'" Error in Docker-Compose on Windows
+#### Symptoms
+- After running the command `docker-compose up -d`, you receive an error message "/usr/bin/env: 'bash\r'"
+### Cause
+- The error is caused by the use of Windows-style line endings (CR+LF) in the `docker-compose/start-container` script instead of Unix-style line endings (LF).
+### Resolution
+1. Open the command prompt or terminal window on your Windows machine.
+2. Navigate to the directory where the `docker-compose/start-container` script is located.
+3. Run the command `dos2unix docker-compose/start-container`.
+4. This will convert the line endings in the script from Windows-style to Unix-style, which should resolve the issue.
+5. Re-run the `docker-compose up -d` command to confirm that the error has been resolved.
